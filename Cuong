@@ -1,0 +1,97 @@
+
+CREATE DATABASE QLHH;
+GO
+
+USE QLHH;
+GO
+
+
+IF OBJECT_ID('dbo.HOADON', 'U') IS NOT NULL
+    DROP TABLE dbo.HOADON;
+
+IF OBJECT_ID('dbo.KHACHHANG', 'U') IS NOT NULL
+    DROP TABLE dbo.KHACHHANG;
+
+IF OBJECT_ID('dbo.KHOAHOC', 'U') IS NOT NULL
+    DROP TABLE dbo.KHOAHOC;
+
+IF OBJECT_ID('dbo.TAIKHOAN', 'U') IS NOT NULL
+    DROP TABLE dbo.TAIKHOAN;
+
+
+CREATE TABLE [dbo].[HOADON](
+    [MaHD] [nchar](10) NOT NULL,
+    [HocPhi] [float] NULL,
+    [Daocu] [float] NULL,
+    [TongTien] [float] NULL,
+    [MaKH] [nchar](10) NULL,
+ CONSTRAINT [PK_HOADON] PRIMARY KEY CLUSTERED 
+(
+    [MaHD] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[KHACHHANG](
+    [MaKH] [nchar](10) NOT NULL,
+    [HoTen] [nvarchar](50) NULL,
+    [GioiTinh] [nvarchar](10) NULL,
+    [NgaySinh] [date] NULL,
+    [QueQuan] [nvarchar](50) NULL,
+    [SDT] [nchar](10) NULL,
+    [SoBuoiHoc] [int] NULL, 
+    [MaKhoaHoc] [nchar](10) NULL, 
+PRIMARY KEY CLUSTERED 
+(
+    [MaKH] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[KHOAHOC](
+    [MaKhoaHoc] [nchar](10) NOT NULL, 
+    [GiaKhoaHoc] [float] NULL,
+    [TrangThai] [nvarchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+    [MaKhoaHoc] ASC 
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[TAIKHOAN](
+    [UName] [nvarchar](10) NOT NULL,
+    [Pass] [nvarchar](10) NULL,
+ CONSTRAINT [PK_TAIKHOAN] PRIMARY KEY CLUSTERED 
+(
+    [UName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+-- Insert data into tables
+INSERT [dbo].[HOADON] ([MaHD], [HocPhi], [Daocu], [TongTien], [MaKH]) VALUES (N'HD001     ', 160000, 340000, 700000, N'KH001     ')
+INSERT [dbo].[HOADON] ([MaHD], [HocPhi], [Daocu], [TongTien], [MaKH]) VALUES (N'HD002     ', 130000, 120000, 350000, N'KH002     ')
+INSERT [dbo].[HOADON] ([MaHD], [HocPhi], [Daocu], [TongTien], [MaKH]) VALUES (N'HD003     ', 150000, 160000, 1810000, N'KH003     ')
+
+INSERT [dbo].[KHACHHANG] ([MaKH], [HoTen], [GioiTinh], [NgaySinh], [QueQuan], [SDT], [SoBuoiHoc], [MaKhoaHoc]) VALUES (N'KH001     ', N'Nguyễn nhật quang', N'Nam', CAST(N'2002-04-18' AS Date), N'Nam Định', N'0658231060', 14, N'Karate001      ')
+INSERT [dbo].[KHACHHANG] ([MaKH], [HoTen], [GioiTinh], [NgaySinh], [QueQuan], [SDT], [SoBuoiHoc], [MaKhoaHoc]) VALUES (N'KH002     ', N'Nguyễn Văn Thắng', N'Nam', CAST(N'2002-06-06' AS Date), N'Hà Nội', N'0900086907', 10, N'Karate002      ')
+INSERT [dbo].[KHACHHANG] ([MaKH], [HoTen], [GioiTinh], [NgaySinh], [QueQuan], [SDT], [SoBuoiHoc], [MaKhoaHoc]) VALUES (N'KH003     ', N'Trần Văn Dũng', N'Nam', CAST(N'2022-06-08' AS Date), N'Hà Nội', N'0928835757', 36, N'Karate003      ')
+INSERT [dbo].[KHACHHANG] ([MaKH], [HoTen], [GioiTinh], [NgaySinh], [QueQuan], [SDT], [SoBuoiHoc], [MaKhoaHoc]) VALUES (N'KH004     ', N'Phạm Minh Tuấn', N'Nam', CAST(N'2002-08-05' AS Date), N'Nam Định', N'0921115414', 12, N'Karate004      ')
+
+INSERT [dbo].[KHOAHOC] ([MaKhoaHoc], [GiaKhoaHoc], [TrangThai]) VALUES (N'Karate001      ', 200000, N'Còn chỗ')
+INSERT [dbo].[KHOAHOC] ([MaKhoaHoc], [GiaKhoaHoc], [TrangThai]) VALUES (N'Karate002      ', 100000, N'Còn chỗ')
+INSERT [dbo].[KHOAHOC] ([MaKhoaHoc], [GiaKhoaHoc], [TrangThai]) VALUES (N'Karate003      ', 1500000, N'Còn chỗ')
+INSERT [dbo].[KHOAHOC] ([MaKhoaHoc], [GiaKhoaHoc], [TrangThai]) VALUES (N'Karate004      ', 1200000, N'Còn chỗ')
+INSERT [dbo].[KHOAHOC] ([MaKhoaHoc], [GiaKhoaHoc], [TrangThai]) VALUES (N'Karate005      ', 1400000, N'Hết chỗ')
+
+INSERT [dbo].[TAIKHOAN] ([UName], [Pass]) VALUES (N'admin', N'12345')
+
+
+ALTER TABLE [dbo].[HOADON] WITH CHECK ADD CONSTRAINT [FK_HOADON_KHACHHANG] FOREIGN KEY([MaKH])
+REFERENCES [dbo].[KHACHHANG] ([MaKH])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+
+ALTER TABLE [dbo].[HOADON] CHECK CONSTRAINT [FK_HOADON_KHACHHANG]
+
+ALTER TABLE [dbo].[KHACHHANG] WITH CHECK ADD CONSTRAINT [FK__KHACHHANG__MaKhoaHoc__5FB337D6] FOREIGN KEY([MaKhoaHoc]) 
+REFERENCES [dbo].[KHOAHOC] ([MaKhoaHoc]) 
+
+ALTER TABLE [dbo].[KHACHHANG] CHECK CONSTRAINT [FK__KHACHHANG__MaKhoaHoc__5FB337D6]
